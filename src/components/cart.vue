@@ -1,19 +1,13 @@
 <template>
-  <div class="hello">
+  <div class="page">
 	<headers tabname="购物车"></headers>
-    <h1>{{ msg }}</h1>
-	<hr/>
-	<h3>{{$store.state.count}}</h3>
-	<div>
-		<button @click="addAction">+</button>
-		<button @click="reduceAction">-</button>
-	</div>
+    
 	<footers :urlRouter="$route.path" ref="footer"></footers>
   </div>
 </template>
 
 <script>
-import { mapState,mapGetters, mapMutations,mapActions } from 'vuex';
+import {mapGetters, mapMutations } from 'vuex';
 import Headers from './base/Header.vue';
 import Footers from './base/Footer.vue';
 export default {
@@ -34,9 +28,8 @@ export default {
 	},
 	methods: {
 		...mapMutations([
-				'add','reduce'
+		
 			]),
-		...mapActions(['addAction','reduceAction'])
 			
 	},
 }

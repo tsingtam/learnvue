@@ -1,14 +1,10 @@
 import * as types from './mutation-types'
 const matutaions = {
-	add(state,n){
-		state.count += n;
+	[types.SET_TABINDEX](state,tabindex){ //首页切换状态
+		state.tabindex = tabindex;
 	},
-	reduce(state){
-		if(state.count > 0){
-			state.count -=1;
-		}else{
-			state.count = 0;
-		}
+	[types.CHECK_DETAIL](state,detail){ //查看详情
+		state.detail = detail
 	}
 }
  export default matutaions

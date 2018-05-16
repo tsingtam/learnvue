@@ -1,5 +1,6 @@
 const state = {
-	count:1
+	tabindex:1,
+	indexList:[]
 }
 export default state
  
