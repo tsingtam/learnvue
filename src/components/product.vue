@@ -1,10 +1,6 @@
 <template>
 	<div class="product">
 		<headers tabname="铝大牛"></headers>
-		<div class="menu-bar">
-			<span :class="{active:1 == $store.state.tabindex}" data-type="1" @click="selectBar('1')">精细氧化铝</span>
-			<span :class="{active:2 == $store.state.tabindex}" data-type="2" @click="selectBar('2')">企业服务</span>
-		</div>
 		<nav class="img_nav">
 		   <div class="swiper-container">
 				<div class="swiper-wrapper">
@@ -16,73 +12,52 @@
 			</div>
     	</nav>
 		<div class="aloContent" v-if="$store.state.tabindex == 1" v-cloak>
-			<div class="select">
-				<div class="select-item area">地区</div>
-				<div class="select-item use">用途</div>
-				<div class="select-item type">种类</div>
-				<div class="select-item alContent">Al2O3含量</div>
+			<div class="page_row">
+				<div class="nav">
+					<div class="nav_item page_row on active">
+						<div class="content">品种</div>
+						<div class="ico_arrow"></div>
+					</div>
+				</div>
+				<div class="nav">
+					<div class="nav_item page_row on active">
+						<div class="content">用途</div>
+						<div class="ico_arrow"></div>
+					</div>
+				</div>
 			</div>
-			<div class="select-content">
-				<ul>
-					<li>华东</li>
-					<li>华南</li>
-					<li>东北</li>
-					<li>西南</li>
-				</ul>
+			<div class='nav_centent_arr'>  
+				<div class="nav_info">				
+					<div class="allLi" data-name="全部">全部</div>  
+					<div class='nav_centent'>
+						<div class="typeName">1111</div>
+						<div class="cont">  
+								<span class="cont-item">2222</span>
+						</div>
+					</div> 
+				</div>
 			</div>
 			<ul class="list-product">
 				<li class="btnProductView" v-for="indexListItem in indexList">
 					<div class="content">
 						<div @click="onDetail(indexListItem,indexListItem.id)">
-						<div class="proInfoL">
-							<ul>
-								<li class="proInfoL-item protitle">{{indexListItem.name}}</li>
-								<li class="proInfoL-item brand">牌号：{{indexListItem.brand}}</li>
-								<li class="proInfoL-item con">含量：{{indexListItem.content}}</li>
-								<li class="proInfoL-item rank">产品等级：{{indexListItem.grade}}</li>
-							</ul>
-						</div>
-						<div class="proInfoR">
-							<div class="price">
-								<span class="red">{{indexListItem.price}}</span>元/吨
+							<div class="proInfoL">
+								<ul>
+									<li class="proInfoL-item protitle">{{indexListItem.name}}</li>
+									<li class="proInfoL-item brand">{{indexListItem.brand}}</li>
+									<li class="proInfoL-item con">{{indexListItem.content}}</li>				
+								</ul>
 							</div>
-						</div>
+							<div class="proInfoR">
+								<div class="price">
+									<span class="red">￥{{indexListItem.price}}</span>
+								</div>
+							</div>
 						</div>
 						<div class="cartIcon"></div>
 					</div>
 				</li>
 			</ul>
-		</div>
-		<div class="companyContent" v-if="$store.state.tabindex == 2" v-cloak>
-			<div class="industryInfo">
-				<div class="title">行业资讯</div>
-				<ul>
-					<li>北京铝大牛公司的相关信息等等</li>
-					<li>北京铝大牛公司的相关信息等等</li>
-					<li>北京铝大牛公司的相关信息等等</li>
-					<li>北京铝大牛公司的相关信息等等</li>
-					<li>北京铝大牛公司的相关信息等等</li>
-				</ul>
-			</div>
-			<div class="productDes">
-				<div class="title">产品介绍</div>
-				<ul>
-					<li v-for="product in productDesc">
-						<figure>
-							<img :src="product.image" alt="产品图片">
-							<p>{{product.name}}</p>
-						</figure>
-					</li>
-				</ul>
-			</div>
-			<div class="partner">
-				<div class="title">合作伙伴</div>
-				<a>北京铝大牛公司</a>
-				<a>北京铝大牛公司</a>
-				<a>北京铝大牛公司</a>
-				<a>北京铝大牛公司</a>
-				<a>北京铝大牛公司</a>
-			</div>
 		</div>
 		<footers :urlRouter="$route.path" ref="footer"></footers>
 	</div>
@@ -174,46 +149,7 @@ export default {
 
 <style lang="less" scoped>
 @import '../../static/less/variable.less';
-.menu-bar{
-	margin-top:2rem;
-}
-.menu-bar .active{
-	background-color:#48a3ec;
-	color:#fff;
-}
-.select{
-	height:1.5rem;
-	line-height:1.5rem;
-	padding:0 10px;
-	border-bottom: .1rem solid #f0f0f0;
-}
-.select-item{
-	line-height:1.5rem;
-	height:1.5rem;
-	width:24%;
-	text-align:center;
-	display:inline-block;
-}
-.select-content{
-	width:100%;
-	position:absolute;
-	z-index:99;
-	display:none;
-}
-.select-content li{
-	line-height:1.5rem;
-	height:1.5rem;
-	padding-left:2.5rem;
-	background-color:#f0f0f0;
-	border-bottom:.1rem solid #e0d8d8;
-}
-.menu-bar span{
-	height:1.5rem;
-	line-height:1.5rem;
-	width:49.5%;
-	display:inline-block;
-	text-align:center;
-}
+
 .img_nav{
 	max-height:10rem;
 }
@@ -228,20 +164,95 @@ export default {
 		height:6.5rem;
 	}
 }
+.page_row {  
+  width: 100%;  
+  display: flex;  
+  flex-direction: row;  
+  align-items: center;
+}
+.nav {  
+  height: 40px;  
+  line-height: 40px;  
+  width: 50%;  
+  text-align: center;
+  background-color: #fff;
+  margin-bottom: 5px;
+}
+.nav_item {  
+  border-bottom: 1px solid #ddd;
+  justify-content:center;
+} 
+.nav .content{
+  font-size:14px;
+}
+.ico_arrow{display: inline-block;transform: rotate(0deg);margin-left:6px;}
+.ico_arrow:before{content:" ";display:inline-block;height:6px;width:6px;border-width:0 2px 2px 0;border-color:#c8c8cd;border-style:solid;-webkit-transform:matrix(.71,.71,-.71,.71,0,0);transform:matrix(.71,.71,-.71,.71,0,0);position:relative;top:-2px;position:absolute;top:50%;margin-top:-7px;}
+.actived .ico_arrow:before{  
+  border-width:2px 0 0 2px;
+  margin-top:-2px;
+  border-color:#ff6e00;
+}
+.nav_centent_arr {  
+  position: absolute;
+  display:none;
+  z-index: 99;
+  width: 100%;
+  background: #fff;  
+animation:mymoves 0.5s;  
+}  
+@keyframes mymove  
+{  
+from {height:0px;}  
+to {height:500rpx;}  
+}  
+.nav_centents{  
+  padding: 10px 8px 8px 10px;  
+  font-size: 13px;  
+  border-bottom: 1px solid #f2f2f2;  
+}
+.nav_centent:nth-child(even){
+	background-color:#fff;
+} 
+.nav_centent .cont,.allLi{
+	padding: 10px 8px 8px 10px;  
+	font-size: 14px;  
+	border-bottom: 1px solid #f2f2f2; 
+} 
+.cont .cont-item{
+	margin-right:14px;
+}
+.typeName{
+	padding: 10px 8px 8px 10px;  
+	font-size: 14px;  
+	border-bottom: 1px solid #f2f2f2;
+	background-color:#eee;
+	color:#999;
+} 
 .btnProductView:last-child{
 	border-bottom:0rem;
 }
 .proInfoL{
-	width:70%;
+	width:65%;
 	float:left;
+	padding-left:10px;
 }
 .proInfoL-item{
 	height:1.5rem;
 	line-height:1.5rem;
+	font-size:14px;
+}
+.proInfoL-item.con{
+	color:#999;
+	font-size:13px;
 }
 .proInfoR{
 	width:30%;
 	display:inline-block;
+	text-align:center;
+}
+.red{
+	color:#ff6c00;
+	font-size:15px;
 }
 .price{
 	height:3rem;
@@ -251,41 +262,13 @@ export default {
 	margin-bottom:3rem;
 }
 .cartIcon{
-	background: url('../../static/img/icon/tab_activity_select.png');
+	background: url('../../static/img/icon/buy.png');
 	height: 2rem;
     width: 2rem;
     background-size: cover;
     margin-top: .2rem;
 	float: right;
-    margin-right: 3rem;
+    margin-right: 2rem;
 }
-.companyContent{
-	padding:0 10px;
-	margin-bottom:3rem;
-}
-.companyContent .title{
-	font-size:.8rem;
-	color:#333;
-	text-decoration: underline;
-	margin-bottom:.5rem;
-}
-.industryInfo,.productDes{
-	margin-bottom:1rem;
-}
-.industryInfo li{
-	width:100%;
-	line-height:1.5rem;
-	height:1.5rem;
-}
-.productDes li{
-	width:49%;
-	display:inline-block;
-}
-.productDes img{
-	width:100%;
-	height:100%;
-}
-.productDes figure p{
-	text-align:center;
-}
+
 </style>
