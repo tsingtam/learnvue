@@ -134,6 +134,7 @@ export default {
 				}
 			});
 			this.checkDetail(item);
+			console.log(item);
 		},
 		selectBar(index){
 			const that = this;

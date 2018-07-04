@@ -1,6 +1,7 @@
 const state = {
 	tabindex:1,
-	indexList:[]
+	indexList:[],
+	cart:[]
 }
 export default state
  

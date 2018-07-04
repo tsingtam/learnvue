@@ -71,28 +71,38 @@
 					<div class="cartModel-box flex">		
 						<div class="cartModel-text">
 							<div class="flex-between">
-								<p class="goods-name">耐火材料</p>	
+								<p class="goods-name">{{$store.state.detail.name}}</p>	
 								<img src="../../../static/img/icon/close.png" class="cartClose" @click.stop="addCartModel=false" />
 							</div>
-							<p class="goods-price">¥4100.00</p>
+							<p class="goods-price">¥{{$store.state.detail.price}}</p>
 						</div>
 					</div>
 					<div class="cartModel-bottom">
-						<p>产品型号</p>
-						<div class="product-model">
-							<span class="active">A-C</span><span>A-GG-A</span>
+						<div class="cart-item">
+							<p>交货方式</p>
+							<div class="product-model">
+								<span class="active">自提</span><span>物流</span>
+							</div>
 						</div>
-						<p>产品等级</p>
-						<div class="product-grade">
-							<span>低钠氧化铝</span><span class="active">超低钠铝粉</span>
+						<div class="cart-item">
+							<p>提货地</p>
+							<div class="product-grade">
+								<span>北京</span><span class="active">上海</span>
+							</div>
 						</div>
-						<p>包装规格</p>
-						<div class="product-grade">
-							<span class="active">50kg</span><span>100kg</span>
+						<div class="cart-item">
+							<p>包装规格</p>
+							<div class="product-grade">
+								<span class="active">50kg</span><span>100kg</span><span>1吨</span>
+							</div>
 						</div>
-						<p>定价方式</p>
-						<div class="product-grade">
-							<span class="active">现汇</span><span>承兑</span>
+						<div class="cart-item minus-plus">
+							<p>购买数量</p>
+							<div class="product-grade">
+								<div class="minus">-</div>
+								<input class="buyNum" value="0.05" />
+								<div class="plus">+</div>
+							</div>
 						</div>
 					</div>
 					<div @click.stop="onBuy">
@@ -111,12 +121,14 @@ import { mapGetters,mapMutations } from 'vuex';
 export default {
 	data () {
 		return {
-			addCartModel:false
+			addCartModel:false,
+			buyNumMin:0.05
 		}
 	},
 	computed: {
 		...mapGetters([
-			'this.$store.state.detail'
+			'this.$store.state.detail',
+			'this.$store.state.cart'
 		])
 	},
 	mounted(){
@@ -128,7 +140,14 @@ export default {
 	methods: {
 		buy(){
 			this.addCartModel = true;
-		}
+		},
+		onBuy(){
+			this.addCartModel = false;
+			this.setCart(this.$store.state.detail);
+		},
+		...mapMutations({
+			setCart:'SET_CART'
+		})
 	},
 }
 </script>
@@ -250,8 +269,9 @@ export default {
 		font-size: .24rem;
 		border-top: 1px solid #ccc;
 		p{
-			line-height:1rem;
-			height:1rem;
+			line-height:1.5rem;
+			height:1.5rem;
+			font-size:14px;
 		}
 		span{
 			line-height:2rem;
@@ -265,6 +285,29 @@ export default {
 			background:#3672dc;
 			color:#fff;
 		}
+		.cart-item{
+			padding:5px 0px;
+		}
+		.minus-plus .product-grade{
+			display:flex;
+		}
+		.buyNum{
+			height:1.5rem;
+			line-height:1.5rem;
+			text-align:center;
+			width:5rem;
+			margin:0 .5rem;
+		}
+		.minus,.plus{
+			width:2rem;
+			height:2rem;
+			line-height:2rem;
+			border-radius:.5rem;
+			background-color:#3672dc;
+			text-align:center;
+			font-size:1rem;
+			color:#fff;
+		}
 	} 
 	.cartModel-addCart{
 		background: @theme_background;
@@ -273,5 +316,5 @@ export default {
 		line-height: 2rem;
 		text-align:center;
 		font-size: .8rem;
-		}
+	}
 </style>
