@@ -2,7 +2,7 @@
 const Mock = require('mockjs')
 //使用mockjs模拟数据
 /*首页轮播*/
-Mock.mock('/api/bannerdata', (req, res) => {
+/*Mock.mock('/api/bannerdata', (req, res) => {
     return {
         data: [
         		{
@@ -20,7 +20,7 @@ Mock.mock('/api/bannerdata', (req, res) => {
 			]}
 })
 /*首页楼层*/
-Mock.mock('/api/productdata', (req, res) => {
+/*Mock.mock('/api/productdata', (req, res) => {
     return {
         data: [
                 {
@@ -149,4 +149,4 @@ Mock.mock('/api/indexData',(req, res) => {
 		]
 	}
 	
-})
+})*/

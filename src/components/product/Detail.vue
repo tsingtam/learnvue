@@ -5,51 +5,31 @@
 		<div class="content-detail">
 			<div class="detail-price">
 				<p class="name">{{$store.state.detail.name}}</p>
-				<div class="price"><span class="red">¥{{$store.state.detail.price}}</span>/现汇价</div>
-				<div class="number">100kg 起批</div>
+				<div class="price"><span class="red">¥{{$store.state.detail.price}}</span>/出厂价</div>
+				<div class="number"></div>
 			</div>
 			<div class="detail-info">
 				<div class="title">产品属性</div>
 				<ul>
 					<li>
+						<div class="nameL">品种</div>
+						<div class="contentR">{{$store.state.detail.category.name}}</div>
+					</li>
+					<li>
 						<div class="nameL">牌号</div>
-						<div class="contentR">{{$store.state.detail.brand}}</div>
+						<div class="contentR">{{$store.state.detail.name}}</div>
+					</li>
+					<li class="quotaLi">
+						<div class="nameL">指标</div>
+						<div class="contentR">{{$store.state.detail.quota}}</div>
 					</li>
 					<li>
-						<div class="nameL">产地</div>
-						<div class="contentR">{{$store.state.detail.production}}</div>
+						<div class="nameL">使用行业</div>
+						<div class="contentR">{{$store.state.detail.uses}}</div>
 					</li>
 					<li>
-						<div class="nameL">AL2O3</div>
-						<div class="contentR">{{$store.state.detail.content}}</div>
-					</li>
-					<li>
-						<div class="nameL">中位粒径</div>
-						<div class="contentR">{{$store.state.detail.width}}μm</div>
-					</li>
-					<li>
-						<div class="nameL">SiO2</div>
-						<div class="contentR">{{$store.state.detail.si}}</div>
-					</li>
-					<li>
-						<div class="nameL">Fe2O3</div>
-						<div class="contentR">{{$store.state.detail.Fe}}</div>
-					</li>
-					<li>
-						<div class="nameL">生产厂家</div>
-						<div class="contentR">{{$store.state.detail.company}}</div>
-					</li>
-					<li>
-						<div class="nameL">批号</div>
-						<div class="contentR">{{$store.state.detail.batch}}</div>
-					</li>
-					<li>
-						<div class="nameL">执行质量标准</div>
-						<div class="contentR">{{$store.state.detail.quality}}</div>
-					</li>
-					<li>
-						<div class="nameL">用途</div>
-						<div class="contentR">{{$store.state.detail.use}}</div>
+						<div class="nameL">工艺</div>
+						<div class="contentR">{{$store.state.detail.technology}}</div>
 					</li>
 				</ul>
 			</div>
@@ -99,9 +79,9 @@
 						<div class="cart-item minus-plus">
 							<p>购买数量</p>
 							<div class="product-grade">
-								<div class="minus">-</div>
-								<input class="buyNum" value="0.05" />
-								<div class="plus">+</div>
+								<div class="minus" @click="onMinus()">-</div>
+								<input class="buyNum" :value="buynumber" />
+								<div class="plus" @click="onAdd()">+</div>
 							</div>
 						</div>
 					</div>
@@ -122,7 +102,7 @@ export default {
 	data () {
 		return {
 			addCartModel:false,
-			buyNumMin:0.05
+			buynumber:1
 		}
 	},
 	computed: {
@@ -144,6 +124,14 @@ export default {
 		onBuy(){
 			this.addCartModel = false;
 			this.setCart(this.$store.state.detail);
+		},
+		onAdd(){
+			this.buynumber++;
+		},
+		onMinus(){
+			if(this.buynumber > 1){
+				this.buynumber--;
+			}
 		},
 		...mapMutations({
 			setCart:'SET_CART'
@@ -189,8 +177,6 @@ export default {
 }
 .detail-info li{
 	width:100%;
-	line-height:2.2rem;
-	height:2.2rem;
 	font-size:.7rem;
 	.nameL{
 		width:35%;
@@ -201,7 +187,6 @@ export default {
 		display:inline-block;
 	}
 }
-
 .detail-bottom {
 		position: fixed;
 		bottom: 0;

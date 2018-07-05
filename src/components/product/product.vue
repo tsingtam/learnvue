@@ -44,8 +44,8 @@
 							<div class="proInfoL">
 								<ul>
 									<li class="proInfoL-item protitle">{{indexListItem.name}}</li>
-									<li class="proInfoL-item brand">{{indexListItem.brand}}</li>
-									<li class="proInfoL-item con">{{indexListItem.content}}</li>				
+									<li class="proInfoL-item brand">{{indexListItem.category.name}}</li>				
+									<li class="proInfoL-item con"><span v-for="item in indexListItem.uses">{{item}}</span></li>	
 								</ul>
 							</div>
 							<div class="proInfoR">
@@ -64,10 +64,10 @@
 </template>
 
 <script>
-import Headers from './base/Header.vue';
-import Footers from './base/Footer.vue';
-import '../../static/css/swiper.min.css';
-import Swiper from '../../static/js/swiper.min';
+import Headers from '../base/Header.vue';
+import Footers from '../base/Footer.vue';
+import '../../../static/css/swiper.min.css';
+import Swiper from '../../../static/js/swiper.min';
 import { mapGetters, mapMutations } from 'vuex';
 export default {
 	data () {
@@ -109,19 +109,21 @@ export default {
 	methods: {
 		getBannerList(){
 			const that = this;
-			this.$http.get('/api/bannerdata').then(function(res){
-				that.bannerList = res.data.data;
-			})
+			//this.$http.get('/api/bannerdata').then(function(res){
+			//	that.bannerList = res.data.data;
+			//})
 		},
 		getIndexList(){
 			const that = this;
-			this.$http.get('/api/indexData').then(function(res){
-				that.indexList = res.data.data;
+			this.$http.get('/api/product/get-products').then(function(res){
+			console.log(res.data.data,'res');
+				that.indexList = res.data.data.products;
 			})
 		},
 		getProductDes(){
 			const that = this;
-			this.$http.get('/api/productdata').then(function(res){
+			//https://jx.lvdaniu.com/product/get-products
+			this.$http.get('/api/product/get-products').then(function(res){
 				console.log(res.data.data);
 				that.productDesc = res.data.data;
 			})
@@ -149,7 +151,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../../static/less/variable.less';
+@import '../../../static/less/variable.less';
 
 .img_nav{
 	max-height:10rem;
@@ -263,7 +265,7 @@ to {height:500rpx;}
 	margin-bottom:3rem;
 }
 .cartIcon{
-	background: url('../../static/img/icon/buy.png');
+	background: url('../../../static/img/icon/buy.png');
 	height: 2rem;
     width: 2rem;
     background-size: cover;

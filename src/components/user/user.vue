@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-	<headers tabname="订单状态"></headers>
+	<headers tabname="个人中心"></headers>
     <h1>{{ msg }}</h1>
 	<hr/>
 	<h3>{{$store.state.count}}</h3>
@@ -14,8 +14,8 @@
 
 <script>
 import { mapState,mapGetters, mapMutations,mapActions } from 'vuex';
-import Headers from './base/Header.vue';
-import Footers from './base/Footer.vue';
+import Headers from '../base/Header.vue';
+import Footers from '../base/Footer.vue';
 export default {
 	data () {
 		return {

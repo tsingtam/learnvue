@@ -5,27 +5,27 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const Index = (resolve) => {
-	import('@/components/product').then((module) => {
+	import('@/components/product/product').then((module) => {
 		resolve(module)
 	})
 }
 const Cart = (resolve) => {
-	import('@/components/cart').then((module) => {
+	import('@/components/cart/cart').then((module) => {
 		resolve(module)
 	})
 }
 const Order = (resolve) => {
-	import('@/components/order').then((module) => {
+	import('@/components/order/order').then((module) => {
 		resolve(module)
 	})
 }
 const User = (resolve) => {
-	import('@/components/user').then((module) => {
+	import('@/components/user/user').then((module) => {
 		resolve(module)
 	})
 }
 const Detail = (resolve) => {
-	import('@/components/detail/Detail').then((module) => {
+	import('@/components/product/Detail').then((module) => {
 		resolve(module)
 	})
 }

@@ -35,8 +35,8 @@
 
 <script>
 import {mapGetters, mapMutations } from 'vuex';
-import Headers from './base/Header.vue';
-import Footers from './base/Footer.vue';
+import Headers from '../base/Header.vue';
+import Footers from '../base/Footer.vue';
 export default {
 	data () {
 		return {

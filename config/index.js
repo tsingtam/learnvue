@@ -10,8 +10,17 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
-
+    proxyTable: {
+		'/api': {
+			target: 'https://jx.lvdaniu.com', // 接口域名
+			secure: true,
+			changeOrigin: true, // 是否启用跨域
+			pathRewrite: { //
+			  '^/api': ''
+			}
+		}	
+	},
+	//proxypath: 'https://jx.lvdaniu.com',
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
