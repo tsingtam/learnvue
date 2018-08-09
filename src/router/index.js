@@ -29,6 +29,16 @@ const Detail = (resolve) => {
 		resolve(module)
 	})
 }
+const Login = (resolve) => {
+	import('@/components/login/login').then((module) => {
+		resolve(module)
+	})
+}
+const Register = (resolve) => {
+	import('@/components/login/register').then((module) => {
+		resolve(module)
+	})
+}
 export default new Router({
   routes: [
     {
@@ -54,6 +64,14 @@ export default new Router({
 	{
 		path: '/detail',
 		component: Detail
+	},
+	{
+		path: '/login',
+		component: Login
+	},
+	{
+		path: '/register',
+		component: Register
 	}
   ]
 })

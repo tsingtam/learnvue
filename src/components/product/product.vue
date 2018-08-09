@@ -69,6 +69,8 @@ import Footers from '../base/Footer.vue';
 import '../../../static/css/swiper.min.css';
 import Swiper from '../../../static/js/swiper.min';
 import { mapGetters, mapMutations } from 'vuex';
+import url from '@/server.config.js';
+
 export default {
 	data () {
 		return {
@@ -115,7 +117,8 @@ export default {
 		},
 		getIndexList(){
 			const that = this;
-			this.$http.get('/api/product/get-products').then(function(res){
+			//this.$http.get('/api/product/get-products').then(function(res){
+			this.$http.get(url.getProductInfo).then(function(res){
 			console.log(res.data.data,'res');
 				that.indexList = res.data.data.products;
 			})
@@ -123,7 +126,8 @@ export default {
 		getProductDes(){
 			const that = this;
 			//https://jx.lvdaniu.com/product/get-products
-			this.$http.get('/api/product/get-products').then(function(res){
+			//this.$http.get('/api/product/get-products').then(function(res){
+			this.$http.get(url.getProductInfo).then(function(res){
 				console.log(res.data.data);
 				that.productDesc = res.data.data;
 			})
